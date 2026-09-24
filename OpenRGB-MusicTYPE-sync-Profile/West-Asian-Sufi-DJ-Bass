@@ -1,0 +1,46 @@
+{
+    "AllowOnlyFirst": false,
+    "Brightness": 100,
+    "CustomSettings": {
+        "audio_settings": {
+            "amplitude": 120,
+            "audio_device": 0,
+            "avg_mode": 0,
+            "avg_size": 80,
+            "decay": 85,
+            "equalizer": [
+                1.5,
+                1.600000023841858,
+                1.399999976158142,
+                1.2000000476837158,
+                1.2999999523162842,
+                1.399999976158142,
+                1.5,
+                1.399999976158142,
+                1.2000000476837158,
+                1.0,
+                0.6000000238418579,
+                0.4000000059604645,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224
+            ],
+            "filter_constant": 1.100000023841858,
+            "nrml_ofst": 0.03999999910593033,
+            "nrml_scl": 0.6600000262260437,
+            "window_mode": 0
+        },
+        "color_zone_stop": 159,
+        "divisions": 16.0,
+        "effect_threshold": 0.5,
+        "motion_zone_stop": 80
+    },
+    "EffectClassName": "AudioParty",
+    "FPS": 60,
+    "RandomColors": false,
+    "Slider2Val": 50,
+    "Speed": 100,
+    "Temperature": 5,
+    "Tint": 5
+}
