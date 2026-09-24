@@ -63,5 +63,5 @@ echo OpenRGB is connected through:
 echo   OpenRGB Effects -^> DDP 127.0.0.1:4048 -^> BLE strip
 echo.
 echo In OpenRGB Effects, select "Lotus Lantern BLE".
-echo Do not run start-music-sync.cmd at the same time.
+echo Load an Audio Party profile in OpenRGB Effects to sync with music.
 pause

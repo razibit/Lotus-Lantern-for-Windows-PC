@@ -2,17 +2,12 @@
   "name": "lotus-lantern-ble-music-sync",
   "version": "1.0.0",
   "private": true,
-  "description": "Windows BLE bridge for Lotus Lantern/ELK LED strips, OpenRGB Effects, and PC audio",
+  "description": "Windows BLE bridge for Lotus Lantern/ELK LED strips and OpenRGB Effects",
   "scripts": {
     "start": "node index.mjs",
-    "check": "node --check index.mjs && node --check configure-openrgb.mjs"
+    "check": "node --check index.mjs && node --check configure-openrgb.mjs && node --check src/ble-device.cjs"
   },
   "dependencies": {
-    "@bjclopes/homebridge-ledstrip-bledom": "^1.7.2",
     "noble-winrt": "^0.1.1"
-  },
-  "trustedDependencies": [
-    "@abandonware/bluetooth-hci-socket",
-    "@abandonware/noble"
-  ]
+  }
 }

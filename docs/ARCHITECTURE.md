@@ -1,56 +1,13 @@
 # Architecture
 
-## Bridge
-
-`index.mjs` owns the BLE connection and two local UDP listeners:
-
-- `127.0.0.1:4048`: standard DDP packets from OpenRGB
-- `127.0.0.1:1920`: RGB packets from `visualizer.py`
-
-Only the newest RGB value is retained. This prevents stale music frames from
-building up in the BLE command queue.
-
-The bridge limits BLE writes to approximately five updates per second because
-the tested controller becomes unreliable when flooded with commands.
-
-## OpenRGB Adapter
-
-OpenRGB creates a virtual DDP LED strip named `Lotus Lantern BLE`. The device has
-one logical LED because the tested BLE controller can set only one color for the
-entire physical strip.
-
-When a DDP packet contains multiple pixels, the bridge averages their RGB
-values.
-
-## BLE Protocol
-
-The tested controller uses:
+`start-openrgb-ble-sync.cmd` loads `config.cmd`, configures OpenRGB's one-LED DDP device, starts `index.mjs`, and opens OpenRGB.
 
 ```text
-Service:        FFF0
-Write target:   FFF3
-Write property: writeWithoutResponse
+OpenRGB Effects -> DDP/UDP 127.0.0.1:4048 -> index.mjs -> src/ble-device.cjs -> BLE FFF3 -> strip
 ```
 
-RGB command:
+The bridge retains only the newest RGB value and limits BLE writes to about five per second. When DDP contains multiple pixels, it averages them because the tested controller applies one RGB color to the entire strip.
 
-```text
-7E 07 05 03 RR GG BB 10 EF
-```
+The local BLE device implementation is the preserved Windows adaptation of `@bjclopes/homebridge-ledstrip-bledom`'s `Device.js`. It uses `noble-winrt` and writes to a writable `FFF3` characteristic on service `FFF0`. A typical RGB command is `7E 07 05 03 RR GG BB 10 EF`.
 
-Example red:
-
-```text
-7E 07 05 03 FF 00 00 10 EF
-```
-
-## Standalone Audio Analysis
-
-`visualizer.py` captures the default Windows speaker loopback, applies a Hann
-window, calculates an FFT, and maps frequency bands to RGB:
-
-- 20-250 Hz: red
-- 250-2000 Hz: green
-- 2000-8000 Hz: blue
-
-Adaptive per-band peaks compensate for different playback volumes.
+OpenRGB's SDK server uses TCP `6742`; the bridge does not use that port for color data.

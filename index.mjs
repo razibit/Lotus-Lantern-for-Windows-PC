@@ -1,12 +1,11 @@
 import { createSocket } from "node:dgram";
 import { writeFileSync, unlinkSync } from "node:fs";
-import Device from "@bjclopes/homebridge-ledstrip-bledom/Device.js";
+import Device from "./src/ble-device.cjs";
 
 if (!process.argv[2]) {
   throw new Error("pls enter uuid");
 }
 
-const legacyServer = createSocket("udp4");
 const ddpServer = createSocket("udp4");
 const uuid = process.argv[2];
 writeFileSync("connector.pid", String(process.pid));
@@ -44,24 +43,10 @@ function handleServerError(name, err) {
   process.exit(1);
 }
 
-legacyServer.on("error", (err) => handleServerError("legacy UDP 1920", err));
 ddpServer.on("error", (err) => handleServerError("OpenRGB DDP 4048", err));
-
-legacyServer.on("listening", () => {
-  console.log("[lotus-lantern] Legacy visualizer listening on UDP 1920");
-});
 
 ddpServer.on("listening", () => {
   console.log("[lotus-lantern] OpenRGB DDP listening on UDP 4048");
-});
-
-legacyServer.on("message", (msg) => {
-  if (msg.length < 4) {
-    console.warn(`[lotus-lantern] Ignoring short UDP packet (${msg.length} bytes)`);
-    return;
-  }
-
-  pendingColor = { r: msg[1], g: msg[2], b: msg[3] };
 });
 
 ddpServer.on("message", (msg) => {
@@ -115,5 +100,4 @@ async function sendLatestColor() {
 
 setInterval(sendLatestColor, MIN_COMMAND_INTERVAL);
 
-legacyServer.bind(1920, "127.0.0.1");
 ddpServer.bind(4048, "127.0.0.1");
