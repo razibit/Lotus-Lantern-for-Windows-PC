@@ -1,6 +1,6 @@
 # Lotus Lantern BLE Music Sync for Windows
 
-Control inexpensive Bluetooth LED strips from a Windows PC and synchronize
+Control Cheap Bluetooth LED strips from Windows PC and synchronize
 them with music using either OpenRGB Effects or the included audio visualizer.
 
 ![Lotus Lantern Music Sync](https://raw.githubusercontent.com/razibit/Lotus-Lantern/main/Alice-Deejay---Megamix---YouTube.gif)
