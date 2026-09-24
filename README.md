@@ -9,7 +9,7 @@ OpenRGB Audio Party -> DDP on 127.0.0.1:4048 -> local BLE bridge -> LED strip
 ## Demos
 
 <p align="center"><strong>LED strip beside the laptop</strong><br>OpenRGB Effects and the illuminated strip during playback.</p>
-<p align="center"><img src="assets/led-strip-live-demo.gif" alt="Laptop running OpenRGB Effects beside an illuminated LED strip" width="360"></p>
+<p align="center"><img src="assets/led-strip-live-demo.gif" alt="Laptop running OpenRGB Effects beside an illuminated LED strip" width="254"></p>
 
 <p align="center"><strong>Alice Deejay — Megamix</strong><br>Music playback demo with the LED strip.</p>
 <p align="center"><img src="assets/alice-deejay-megamix-demo.gif" alt="Alice Deejay Megamix playing on the laptop beside the LED strip" width="640"></p>
